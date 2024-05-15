@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH -n 1
+#SBATCH -p fila2
+#SBATCH --array=0-7
+#SBATCH
+
+##ARGS=(Breast_GSE70947.py Colorectal_GSE44076.py faults.py german1.py heart.py ionosphere.py Liver_GSE14520_U133A.py Lung_GSE19804.py Prostate_GSE6919_U95B.py Renal_GSE53757.py spambase.py spectf.py Throat_GSE42743.py wdbc)
+ARGS=(Breast_GSE33447.py Breast_GSE59246.py Colorectal_GSE44861.py)
+##ARGS=(/home/gdominico/workspace/RelAggCUMIDA/experiments/*)
+##ARGS=(Bladder_GSE31189.py Colorectal_GSE41657.py Lung_GSE18842.py Liver_GSE62232.py)
+
+
+WORKDIR=/home/gdominico/workspace/Proposta/WrapperDE-FS
+cd $WORKDIR
+
+python3 wrapperDE.py experiments_proposta/${ARGS[$SLURM_ARRAY_TASK_ID]}
+
